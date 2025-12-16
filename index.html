@@ -1,11 +1,722 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mon site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherif Gen | Services Futuristes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000010;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Arrière-plan étoilé */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        /* Effets de particules */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,212,255,0.3) 0%, rgba(9,9,121,0) 70%);
+        }
+        
+        /* Conteneur principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header futuriste */
+        header {
+            padding: 40px 0;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+            margin-bottom: 60px;
+            background: linear-gradient(to bottom, rgba(0, 0, 30, 0.8), transparent);
+            backdrop-filter: blur(5px);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
+            position: relative;
+        }
+        
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 80px;
+            background: radial-gradient(ellipse, rgba(0, 247, 255, 0.3) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: -1;
+        }
+        
+        .logo-section h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #00f7ff, #0099ff, #7700ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+            margin-bottom: 8px;
+        }
+        
+        .logo-section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 22px;
+            font-weight: 500;
+            color: #00f7ff;
+            letter-spacing: 2px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .logo-section h2::before {
+            content: "#";
+            color: #7700ff;
+            margin-right: 5px;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+        
+        .nav-list li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: rgba(0, 247, 255, 0.05);
+            border: 1px solid rgba(0, 247, 255, 0.1);
+        }
+        
+        .nav-list li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .nav-list li a:hover {
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .nav-list li a:hover::before {
+            left: 100%;
+        }
+        
+        /* Section principale */
+        .tagline-container {
+            text-align: center;
+            margin: 80px 0 100px 0;
+            position: relative;
+        }
+        
+        .tagline {
+            font-size: 32px;
+            color: #a0a0ff;
+            font-weight: 300;
+            position: relative;
+            display: inline-block;
+            padding: 0 40px;
+        }
+        
+        .tagline::before, .tagline::after {
+            content: "✦";
+            color: #00f7ff;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            animation: spin 10s linear infinite;
+        }
+        
+        .tagline::before {
+            left: 0;
+        }
+        
+        .tagline::after {
+            right: 0;
+        }
+        
+        /* Section Services */
+        .services-section {
+            margin-bottom: 120px;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 52px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00f7ff, #7700ff, transparent);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 60px;
+            perspective: 1000px;
+        }
+        
+        /* Carte futuriste 3D */
+        .service-card {
+            background: rgba(10, 10, 40, 0.6);
+            border-radius: 20px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 247, 255, 0.05) 0%, rgba(119, 0, 255, 0.05) 100%);
+            z-index: -1;
+        }
+        
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00f7ff, #7700ff, #ff00cc, #00f7ff);
+            z-index: -2;
+            border-radius: 22px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .service-card:hover::after {
+            opacity: 1;
+        }
+        
+        .service-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #00f7ff, #a066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .service-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #00f7ff, transparent);
+        }
+        
+        .service-description {
+            color: #b0b0ff;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            flex-grow: 1;
+        }
+        
+        /* Boutons futuristes */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            background: rgba(0, 0, 30, 0.8);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .btn:hover {
+            background: rgba(0, 10, 40, 0.9);
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
+            border-color: #00f7ff;
+            transform: translateY(-5px);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn span {
+            margin-left: 10px;
+            font-size: 22px;
+            transition: transform 0.5s ease;
+        }
+        
+        .btn:hover span {
+            transform: translateX(10px);
+        }
+        
+        /* Effet pour bouton Immortal */
+        .btn-immortal {
+            border-color: rgba(0, 247, 255, 0.4);
+        }
+        
+        .btn-immortal:hover {
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.6);
+        }
+        
+        /* Effet pour bouton YouTube */
+        .btn-youtube {
+            border-color: rgba(255, 0, 0, 0.4);
+        }
+        
+        .btn-youtube:hover {
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+            border-color: #ff0000;
+        }
+        
+        /* Footer futuriste */
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid rgba(0, 247, 255, 0.1);
+            text-align: center;
+            position: relative;
+            background: linear-gradient(to top, rgba(0, 0, 30, 0.8), transparent);
+            backdrop-filter: blur(5px);
+        }
+        
+        .footer-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 247, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .footer-text {
+            font-size: 22px;
+            color: #00f7ff;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+        }
+        
+        .footer-note {
+            font-size: 16px;
+            color: #a0a0ff;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Animations */
+        @keyframes spin {
+            0% { transform: translateY(-50%) rotate(0deg); }
+            100% { transform: translateY(-50%) rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .logo-section h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+            
+            .nav-list {
+                width: 100%;
+                justify-content: space-between;
+                gap: 20px;
+            }
+            
+            .nav-list li a {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            
+            .tagline {
+                font-size: 24px;
+            }
+            
+            .service-card {
+                padding: 30px 25px;
+                min-height: 280px;
+            }
+            
+            .service-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-section h1 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-list li a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Bonjour 👋</h1>
-  <p>Mon site est en ligne.</p>
+    <!-- Arrière-plan étoilé -->
+    <div id="starfield"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <!-- Header futuriste -->
+        <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-glow"></div>
+                    <h1>Cherif Gen</h1>
+                    <h2>1 Gen Sites</h2>
+                </div>
+                <nav>
+                    <ul class="nav-list">
+                        <li><a href="#services" class="nav-link">Services</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Section principale -->
+        <main>
+            <div class="tagline-container">
+                <p class="tagline floating">Cherif Gen | #1 Sites we are the best learning sites out there!</p>
+            </div>
+            
+            <!-- Section Services -->
+            <section id="services" class="services-section">
+                <h2 class="section-title pulse">Services</h2>
+                <div class="services-grid">
+                    <!-- Carte Immortal -->
+                    <div class="service-card">
+                        <h3 class="service-title">Immortal</h3>
+                        <p class="service-description">Accédez à des services premium et du contenu exclusif. Explorez un univers de connaissances avancées et de ressources uniques.</p>
+                        <a href="https://immortal.rs/?code=MTMwNDQzNzE2MDQ0MDgyMjU1MA==" target="_blank" class="btn btn-immortal">
+                            Créer Votre Site <span>→</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Carte YouTube -->
+                    <div class="service-card">
+                        <h3 class="service-title">YouTube</h3>
+                        <p class="service-description">Découvrez notre chaîne YouTube remplie de tutoriels, d'analyses et de contenu exclusif pour développer vos compétences.</p>
+                        <a href="https://www.youtube.com/@bayrin12" target="_blank" class="btn btn-youtube">
+                            Visiter la Chaîne <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-glow"></div>
+            <p class="footer-text">Author Windows</p>
+            <p class="footer-note">Accident aux paramètres pour activer Windows.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Création des étoiles en arrière-plan
+        const starfield = document.getElementById('starfield');
+        const particlesContainer = document.getElementById('particles');
+        
+        // Création des étoiles
+        for (let i = 0; i < 300; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Taille aléatoire
+            const size = Math.random() * 3;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Position aléatoire
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            // Opacité aléatoire
+            star.style.opacity = Math.random() * 0.8 + 0.2;
+            
+            // Animation de scintillement
+            const duration = Math.random() * 5 + 3;
+            const delay = Math.random() * 5;
+            star.style.animation = `pulse ${duration}s ease-in-out ${delay}s infinite alternate`;
+            
+            starfield.appendChild(star);
+        }
+        
+        // Création des particules
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Taille aléatoire
+            const size = Math.random() * 100 + 50;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Position aléatoire
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Animation de déplacement
+            const duration = Math.random() * 20 + 10;
+            const xMove = Math.random() * 100 - 50;
+            const yMove = Math.random() * 100 - 50;
+            
+            particle.style.animation = `float ${duration}s ease-in-out infinite alternate`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Effet de parallaxe sur les étoiles
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                // Plus l'étoile est petite, plus elle bouge lentement (effet de profondeur)
+                const speed = parseFloat(star.style.width) * 0.5;
+                const moveX = (x - 0.5) * speed * 20;
+                const moveY = (y - 0.5) * speed * 20;
+                
+                star.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+        
+        // Effet 3D sur les cartes au mouvement de la souris
+        const cards = document.querySelectorAll('.service-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = ((x - centerX) / centerX) * 10;
+                const rotateX = ((centerY - y) / centerY) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 300);
+            });
+        });
+        
+        // Smooth scroll pour la navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#services') {
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Effet de saisie de texte pour le titre
+        const title = document.querySelector('.logo-section h1');
+        const originalText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        // Démarrer l'animation après le chargement
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+    </script>
 </body>
 </html>
