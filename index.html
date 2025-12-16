@@ -4,31 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cherif Gen | Services Futuristes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* Réinitialisation et styles de base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: default;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            background-color: #000010;
+            background: #000000;
             color: #ffffff;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Exo 2', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            cursor: auto;
         }
         
-        /* Arrière-plan étoilé */
-        #starfield {
+        /* Arrière-plan étoilé minimaliste */
+        .star-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(30, 30, 60, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(30, 30, 60, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(30, 30, 60, 0.1) 0%, transparent 50%),
+                #000000;
         }
         
         .star {
@@ -37,7 +49,7 @@
             border-radius: 50%;
         }
         
-        /* Effets de particules */
+        /* Particules discrètes */
         .particles {
             position: fixed;
             width: 100%;
@@ -48,27 +60,28 @@
         
         .particle {
             position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,212,255,0.3) 0%, rgba(9,9,121,0) 70%);
+            box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.3);
         }
         
         /* Conteneur principal */
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
             position: relative;
             z-index: 1;
         }
         
-        /* Header futuriste */
+        /* Header élégant */
         header {
             padding: 40px 0;
             position: relative;
-            border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+            border-bottom: 1px solid rgba(100, 100, 255, 0.1);
             margin-bottom: 60px;
-            background: linear-gradient(to bottom, rgba(0, 0, 30, 0.8), transparent);
-            backdrop-filter: blur(5px);
         }
         
         .header-content {
@@ -86,111 +99,108 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
-            height: 80px;
-            background: radial-gradient(ellipse, rgba(0, 247, 255, 0.3) 0%, transparent 70%);
-            filter: blur(20px);
+            width: 180px;
+            height: 60px;
+            background: radial-gradient(ellipse, rgba(100, 100, 255, 0.1) 0%, transparent 70%);
+            filter: blur(15px);
             z-index: -1;
         }
         
-        .logo-section h1 {
+        .logo-main {
             font-family: 'Orbitron', monospace;
-            font-size: 48px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            background: linear-gradient(90deg, #00f7ff, #0099ff, #7700ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
-            margin-bottom: 8px;
-        }
-        
-        .logo-section h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 22px;
-            font-weight: 500;
-            color: #00f7ff;
+            font-size: 42px;
+            font-weight: 600;
+            color: #ffffff;
             letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(100, 100, 255, 0.3);
+        }
+        
+        .logo-subtitle {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #8888ff;
+            letter-spacing: 1px;
             position: relative;
-            padding-left: 20px;
+            padding-left: 15px;
         }
         
-        .logo-section h2::before {
+        .logo-subtitle::before {
             content: "#";
-            color: #7700ff;
-            margin-right: 5px;
+            color: #6666ff;
+            position: absolute;
+            left: 0;
         }
         
-        nav {
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-list {
+        /* Navigation minimaliste */
+        nav ul {
             display: flex;
             list-style: none;
-            gap: 50px;
+            gap: 40px;
         }
         
-        .nav-list li a {
+        nav a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 400;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
-            background: rgba(0, 247, 255, 0.05);
-            border: 1px solid rgba(0, 247, 255, 0.1);
         }
         
-        .nav-list li a::before {
+        nav a::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6666ff, #8888ff);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
-            transition: left 0.7s ease;
         }
         
-        .nav-list li a:hover {
-            background: rgba(0, 247, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 247, 255, 0.4);
-            transform: translateY(-3px);
-        }
-        
-        .nav-list li a:hover::before {
-            left: 100%;
+        nav a:hover {
+            color: #8888ff;
         }
         
         /* Section principale */
+        .main-content {
+            padding: 40px 0 80px;
+        }
+        
         .tagline-container {
             text-align: center;
-            margin: 80px 0 100px 0;
+            margin-bottom: 100px;
             position: relative;
         }
         
         .tagline {
-            font-size: 32px;
-            color: #a0a0ff;
+            font-size: 28px;
+            color: #8888ff;
             font-weight: 300;
             position: relative;
             display: inline-block;
-            padding: 0 40px;
+            padding: 0 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
         .tagline::before, .tagline::after {
-            content: "✦";
-            color: #00f7ff;
+            content: "•";
+            color: #6666ff;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 24px;
-            animation: spin 10s linear infinite;
+            font-size: 20px;
         }
         
         .tagline::before {
@@ -203,140 +213,129 @@
         
         /* Section Services */
         .services-section {
-            margin-bottom: 120px;
             position: relative;
+            margin-bottom: 100px;
         }
         
         .section-title {
             font-family: 'Orbitron', monospace;
-            font-size: 52px;
-            font-weight: 700;
+            font-size: 48px;
+            font-weight: 500;
             text-align: center;
-            margin-bottom: 80px;
-            position: relative;
+            margin-bottom: 60px;
             color: #ffffff;
-            text-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+            text-shadow: 0 0 10px rgba(100, 100, 255, 0.2);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00f7ff, #7700ff, transparent);
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #6666ff, transparent);
         }
         
+        /* Grille de services */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 60px;
-            perspective: 1000px;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        /* Carte futuriste 3D */
+        /* Cartes futuristes épurées */
         .service-card {
-            background: rgba(10, 10, 40, 0.6);
-            border-radius: 20px;
-            padding: 50px 40px;
+            background: rgba(20, 20, 40, 0.3);
+            border-radius: 12px;
+            padding: 40px 35px;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 247, 255, 0.2);
-            transform-style: preserve-3d;
-            transition: transform 0.6s ease, box-shadow 0.6s ease;
-            min-height: 320px;
+            border: 1px solid rgba(100, 100, 255, 0.1);
+            transition: all 0.4s ease;
+            min-height: 280px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            backdrop-filter: blur(5px);
         }
         
-        .service-card::before {
-            content: '';
+        .service-card:hover {
+            border-color: rgba(100, 100, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-10px);
+        }
+        
+        .card-glow {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 247, 255, 0.05) 0%, rgba(119, 0, 255, 0.05) 100%);
+            background: radial-gradient(circle at center, rgba(100, 100, 255, 0.05), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
             z-index: -1;
         }
         
-        .service-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #00f7ff, #7700ff, #ff00cc, #00f7ff);
-            z-index: -2;
-            border-radius: 22px;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-        
-        .service-card:hover::after {
+        .service-card:hover .card-glow {
             opacity: 1;
         }
         
-        .service-title {
+        .card-title {
             font-family: 'Orbitron', monospace;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            background: linear-gradient(90deg, #00f7ff, #a066ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #8888ff;
             position: relative;
             display: inline-block;
         }
         
-        .service-title::after {
+        .card-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -5px;
             left: 0;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #00f7ff, transparent);
+            width: 50px;
+            height: 2px;
+            background: #6666ff;
         }
         
-        .service-description {
-            color: #b0b0ff;
-            font-size: 18px;
+        .card-description {
+            color: #aaaaaa;
+            font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             flex-grow: 1;
         }
         
-        /* Boutons futuristes */
+        /* Boutons élégants */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 18px 40px;
-            background: rgba(0, 0, 30, 0.8);
+            padding: 15px 35px;
+            background: rgba(30, 30, 60, 0.5);
             color: #ffffff;
             text-decoration: none;
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 50px;
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            transition: all 0.5s ease;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 6px;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             width: 100%;
             text-align: center;
-            backdrop-filter: blur(5px);
         }
         
         .btn::before {
@@ -346,58 +345,54 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
-            transition: left 0.7s ease;
+            background: linear-gradient(90deg, transparent, rgba(100, 100, 255, 0.1), transparent);
+            transition: left 0.5s ease;
         }
         
         .btn:hover {
-            background: rgba(0, 10, 40, 0.9);
-            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
-            border-color: #00f7ff;
-            transform: translateY(-5px);
+            background: rgba(40, 40, 70, 0.7);
+            border-color: rgba(100, 100, 255, 0.4);
+            transform: translateY(-3px);
         }
         
         .btn:hover::before {
             left: 100%;
         }
         
-        .btn span {
+        .btn-icon {
             margin-left: 10px;
-            font-size: 22px;
-            transition: transform 0.5s ease;
+            font-size: 18px;
+            transition: transform 0.3s ease;
         }
         
-        .btn:hover span {
-            transform: translateX(10px);
+        .btn:hover .btn-icon {
+            transform: translateX(5px);
         }
         
-        /* Effet pour bouton Immortal */
+        /* Bouton Immortal */
         .btn-immortal {
-            border-color: rgba(0, 247, 255, 0.4);
+            border-color: rgba(100, 100, 255, 0.3);
         }
         
         .btn-immortal:hover {
-            box-shadow: 0 0 30px rgba(0, 247, 255, 0.6);
+            box-shadow: 0 5px 20px rgba(100, 100, 255, 0.2);
         }
         
-        /* Effet pour bouton YouTube */
+        /* Bouton YouTube */
         .btn-youtube {
-            border-color: rgba(255, 0, 0, 0.4);
+            border-color: rgba(255, 50, 50, 0.3);
         }
         
         .btn-youtube:hover {
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
-            border-color: #ff0000;
+            box-shadow: 0 5px 20px rgba(255, 50, 50, 0.2);
         }
         
-        /* Footer futuriste */
+        /* Footer simple */
         footer {
-            padding: 50px 0;
-            border-top: 1px solid rgba(0, 247, 255, 0.1);
+            padding: 40px 0;
+            border-top: 1px solid rgba(100, 100, 255, 0.1);
             text-align: center;
             position: relative;
-            background: linear-gradient(to top, rgba(0, 0, 30, 0.8), transparent);
-            backdrop-filter: blur(5px);
         }
         
         .footer-glow {
@@ -406,65 +401,58 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(0, 247, 255, 0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, rgba(100, 100, 255, 0.05) 0%, transparent 70%);
             pointer-events: none;
             z-index: -1;
         }
         
-        .footer-text {
-            font-size: 22px;
-            color: #00f7ff;
-            margin-bottom: 15px;
-            font-family: 'Orbitron', monospace;
+        .footer-title {
+            font-size: 20px;
+            color: #8888ff;
+            margin-bottom: 10px;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 500;
             letter-spacing: 1px;
         }
         
-        .footer-note {
-            font-size: 16px;
-            color: #a0a0ff;
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
             font-style: italic;
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         
-        /* Animations */
-        @keyframes spin {
-            0% { transform: translateY(-50%) rotate(0deg); }
-            100% { transform: translateY(-50%) rotate(360deg); }
+        /* Animations discrètes */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        
-        .floating {
+        .float {
             animation: float 6s ease-in-out infinite;
-        }
-        
-        .pulse {
-            animation: pulse 3s ease-in-out infinite;
         }
         
         /* Responsive */
         @media (max-width: 1024px) {
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
+                max-width: 600px;
             }
             
-            .logo-section h1 {
+            .logo-main {
                 font-size: 36px;
             }
             
             .section-title {
-                font-size: 42px;
+                font-size: 40px;
             }
         }
         
@@ -475,103 +463,125 @@
                 gap: 30px;
             }
             
-            .nav-list {
+            nav ul {
                 width: 100%;
                 justify-content: space-between;
                 gap: 20px;
             }
             
-            .nav-list li a {
-                padding: 10px 20px;
-                font-size: 16px;
+            .logo-main {
+                font-size: 32px;
             }
             
             .tagline {
-                font-size: 24px;
+                font-size: 22px;
+                padding: 0 20px;
+            }
+            
+            .section-title {
+                font-size: 36px;
             }
             
             .service-card {
                 padding: 30px 25px;
-                min-height: 280px;
+                min-height: 250px;
             }
             
-            .service-title {
+            .card-title {
                 font-size: 28px;
             }
         }
         
         @media (max-width: 480px) {
-            .logo-section h1 {
-                font-size: 32px;
+            .logo-main {
+                font-size: 28px;
             }
             
             .section-title {
-                font-size: 32px;
+                font-size: 30px;
             }
             
             .services-grid {
                 grid-template-columns: 1fr;
             }
             
-            .nav-list {
+            nav ul {
                 flex-direction: column;
                 gap: 15px;
             }
             
-            .nav-list li a {
+            nav a {
                 width: 100%;
                 text-align: center;
+                padding: 12px 0;
+            }
+            
+            .tagline {
+                font-size: 18px;
+                padding: 0 15px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Arrière-plan étoilé -->
-    <div id="starfield"></div>
+    <div class="star-background" id="starBackground"></div>
     <div class="particles" id="particles"></div>
     
     <div class="container">
-        <!-- Header futuriste -->
+        <!-- Header élégant -->
         <header>
             <div class="header-content">
                 <div class="logo-section">
                     <div class="logo-glow"></div>
-                    <h1>Cherif Gen</h1>
-                    <h2>1 Gen Sites</h2>
+                    <h1 class="logo-main">Cherif Gen</h1>
+                    <p class="logo-subtitle">1 Gen Sites</p>
                 </div>
+                
                 <nav>
-                    <ul class="nav-list">
-                        <li><a href="#services" class="nav-link">Services</a></li>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <!-- Section principale -->
-        <main>
+        <!-- Contenu principal -->
+        <main class="main-content">
             <div class="tagline-container">
-                <p class="tagline floating">Cherif Gen | #1 Sites we are the best learning sites out there!</p>
+                <p class="tagline float">
+                    Mysticism | #1 Sites we are the best learning sites out there!
+                </p>
             </div>
             
             <!-- Section Services -->
             <section id="services" class="services-section">
-                <h2 class="section-title pulse">Services</h2>
+                <h2 class="section-title">Services</h2>
+                
                 <div class="services-grid">
                     <!-- Carte Immortal -->
                     <div class="service-card">
-                        <h3 class="service-title">Immortal</h3>
-                        <p class="service-description">Accédez à des services premium et du contenu exclusif. Explorez un univers de connaissances avancées et de ressources uniques.</p>
+                        <div class="card-glow"></div>
+                        <h3 class="card-title">Immortal</h3>
+                        <p class="card-description">
+                            Accédez à des services premium et à du contenu exclusif. 
+                            Découvrez un univers de connaissances avancées et de ressources uniques.
+                        </p>
                         <a href="https://immortal.rs/?code=MTMwNDQzNzE2MDQ0MDgyMjU1MA==" target="_blank" class="btn btn-immortal">
-                            Créer Votre Site <span>→</span>
+                            Visiter Immortal <span class="btn-icon">→</span>
                         </a>
                     </div>
                     
                     <!-- Carte YouTube -->
                     <div class="service-card">
-                        <h3 class="service-title">YouTube</h3>
-                        <p class="service-description">Découvrez notre chaîne YouTube remplie de tutoriels, d'analyses et de contenu exclusif pour développer vos compétences.</p>
+                        <div class="card-glow"></div>
+                        <h3 class="card-title">YouTube</h3>
+                        <p class="card-description">
+                            Explorez notre chaîne YouTube remplie de tutoriels, 
+                            d'analyses et de contenu exclusif pour développer vos compétences.
+                        </p>
                         <a href="https://www.youtube.com/@bayrin12" target="_blank" class="btn btn-youtube">
-                            Visiter la Chaîne <span>→</span>
+                            Visiter YouTube <span class="btn-icon">→</span>
                         </a>
                     </div>
                 </div>
@@ -581,23 +591,22 @@
         <!-- Footer -->
         <footer>
             <div class="footer-glow"></div>
-            <p class="footer-text">Author Windows</p>
-            <p class="footer-note">Accident aux paramètres pour activer Windows.</p>
+            <h3 class="footer-title">Author Windows</h3>
+            <p class="footer-text">Accident aux paramètres pour activer Windows.</p>
         </footer>
     </div>
 
     <script>
         // Création des étoiles en arrière-plan
-        const starfield = document.getElementById('starfield');
-        const particlesContainer = document.getElementById('particles');
+        const starBackground = document.getElementById('starBackground');
         
         // Création des étoiles
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 200; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
             
             // Taille aléatoire
-            const size = Math.random() * 3;
+            const size = Math.random() * 2 + 0.5;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             
@@ -606,36 +615,33 @@
             star.style.top = `${Math.random() * 100}%`;
             
             // Opacité aléatoire
-            star.style.opacity = Math.random() * 0.8 + 0.2;
+            const opacity = Math.random() * 0.7 + 0.3;
+            star.style.opacity = opacity;
             
             // Animation de scintillement
-            const duration = Math.random() * 5 + 3;
+            const duration = Math.random() * 4 + 2;
             const delay = Math.random() * 5;
-            star.style.animation = `pulse ${duration}s ease-in-out ${delay}s infinite alternate`;
+            star.style.animation = `twinkle ${duration}s ease-in-out ${delay}s infinite`;
             
-            starfield.appendChild(star);
+            starBackground.appendChild(star);
         }
         
-        // Création des particules
-        for (let i = 0; i < 50; i++) {
+        // Création des particules discrètes
+        const particlesContainer = document.getElementById('particles');
+        
+        for (let i = 0; i < 30; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
-            
-            // Taille aléatoire
-            const size = Math.random() * 100 + 50;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
             
             // Position aléatoire
             particle.style.left = `${Math.random() * 100}%`;
             particle.style.top = `${Math.random() * 100}%`;
             
-            // Animation de déplacement
-            const duration = Math.random() * 20 + 10;
-            const xMove = Math.random() * 100 - 50;
-            const yMove = Math.random() * 100 - 50;
+            // Animation de flottement lente
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
             
-            particle.style.animation = `float ${duration}s ease-in-out infinite alternate`;
+            particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite alternate`;
             
             particlesContainer.appendChild(particle);
         }
@@ -646,39 +652,26 @@
             const y = e.clientY / window.innerHeight;
             
             const stars = document.querySelectorAll('.star');
-            stars.forEach((star, index) => {
+            stars.forEach((star) => {
                 // Plus l'étoile est petite, plus elle bouge lentement (effet de profondeur)
-                const speed = parseFloat(star.style.width) * 0.5;
-                const moveX = (x - 0.5) * speed * 20;
-                const moveY = (y - 0.5) * speed * 20;
+                const speed = parseFloat(star.style.width) * 0.3;
+                const moveX = (x - 0.5) * speed * 10;
+                const moveY = (y - 0.5) * speed * 10;
                 
                 star.style.transform = `translate(${moveX}px, ${moveY}px)`;
             });
         });
         
-        // Effet 3D sur les cartes au mouvement de la souris
+        // Effet de hover sur les cartes
         const cards = document.querySelectorAll('.service-card');
         
         cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = ((x - centerX) / centerX) * 10;
-                const rotateX = ((centerY - y) / centerY) * 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-                setTimeout(() => {
-                    card.style.transform = '';
-                }, 300);
+                card.style.transform = 'translateY(0)';
             });
         });
         
@@ -692,31 +685,48 @@
                     const targetElement = document.querySelector(targetId);
                     
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // Effet de saisie de texte pour le titre
-        const title = document.querySelector('.logo-section h1');
-        const originalText = title.textContent;
-        title.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                title.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
+        // Animation d'apparition des éléments au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
         
-        // Démarrer l'animation après le chargement
-        window.addEventListener('load', () => {
-            setTimeout(typeWriter, 500);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Préparer les cartes pour l'animation
+        const cardsToAnimate = document.querySelectorAll('.service-card');
+        cardsToAnimate.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            
+            observer.observe(card);
         });
+        
+        // Animation du tagline
+        const tagline = document.querySelector('.tagline');
+        tagline.style.opacity = '0';
+        tagline.style.transform = 'translateY(20px)';
+        tagline.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        setTimeout(() => {
+            tagline.style.opacity = '1';
+            tagline.style.transform = 'translateY(0)';
+        }, 300);
     </script>
 </body>
 </html>
